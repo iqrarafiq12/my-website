@@ -1,4 +1,26 @@
-function HeroSection() {
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/all";
+
+const HeroSection = () => {
+  // All GSAP ANIMATION HERE
+  useGSAP(() => {
+    const titleSplit = SplitText.create(".hero-title", {
+      type: "chars",
+    });
+
+    // Show Load Animation
+    const tl = gsap.timeline({
+      delay: 1,
+    });
+
+    tl.to(".hero-content", {
+      opacity: 1,
+      y: 0,
+      ease: "power1.inOut",
+    });
+  });
+
   return (
     <section className="bg-main-bg">
       <div className="hero-container">
@@ -7,7 +29,7 @@ function HeroSection() {
           alt="static-img"
           className="absolute bottom-0 left-1/2 -translate-x-1/2 pbject-auto scale-100 md:scale-150"
         />
-        <div className="hero-content">
+        <div className="hero-content opacity-0">
           <div className="overflow-hidden">
             <h1 className="hero-title">Freaking Delicious</h1>
             <div
@@ -20,18 +42,18 @@ function HeroSection() {
                 <h1>Protein + Caffine</h1>
               </div>
             </div>
-              </div>
-            <h2>
-              Live life to the fullest with SPYLT: Shatter boredom and embrace
-              your inner kid with every deliciously smooth chug.
-            </h2>
+          </div>
+          <h2>
+            Live life to the fullest with SPYLT: Shatter boredom and embrace
+            your inner kid with every deliciously smooth chug.
+          </h2>
           <div className="hero-button">
             <p>Chug a SPYLT</p>
           </div>
-          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
 
 export default HeroSection;
